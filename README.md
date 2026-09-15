@@ -13,9 +13,20 @@ Modern Linux systems support a variety of virtualization platforms. However, Typ
 - **Secure Boot Support**: Easily generate and enroll MOK keys to sign out-of-tree kernel modules (like VMware and VirtualBox) for systems with Secure Boot enabled.
 - **Broad Support**: Supports KVM, VirtualBox, VMware, Xen, Proxmox VE, and Multipass out of the box.
 
+## Before install this repo!!!
+you have to know that you got another way to change vm provider with some arg without using this repo 
+```sh
+# use as kernel parameter
+kvm.enable_virt_at_load=0
+
+# or add below at /etc/modprobe.d/kvm.conf
+options kvm enable_virt_at_load=0
+
+```
+
 ## Installation
 ```bash
-git clone https://github.com/0x653o/vm-manager.git
+git clone https://github.com/mu1aq/vm-manager.git
 cd vm-manager
 chmod +x install.sh
 ./install.sh
@@ -52,6 +63,7 @@ vm-manager --help
 
 ### FAQ: What about QEMU?
 **QEMU by itself is a software emulator and does not conflict with VirtualBox or VMware.** Conflicts only occur when QEMU attempts to use **KVM** for hardware acceleration. Because `vm-manager` manages KVM kernel modules (`kvm`, `kvm_intel`, `kvm_amd`), any QEMU-based KVM virtualization is already safely handled without needing explicit QEMU blacklisting.
+
 
 # Future Work
 - [ ] Make it afford various custom VM managers
